@@ -2,50 +2,16 @@ import java.util.Arrays;
 
 public class Banca {
     private String nomeBanca;
-    private ContoBancario[] contoBancario;
-
-    private int maxConti;
-    private int numConti = 0;
+    private ContoBancario[] contoBancarioArray;
+    private int numConti;
 
     public Banca(String nomeBanca, int maxConti){
         this.nomeBanca = nomeBanca;
-        this.maxConti = maxConti;
-        this.contoBancario = new ContoBancario[maxConti];
+        this.contoBancarioArray = new ContoBancario[maxConti];
+        this.numConti = 0;
     }
-
-    public void aggiungiConto(String iban,double saldo){
-        if(numConti < maxConti){
-        contoBancario[numConti] = new ContoBancario(iban, saldo);
-        }else if (numConti == maxConti) {
-            System.out.println("ERRORE! La banca : " + getNomeBanca() + " può avere massimo "+ maxConti + " Conti");
-        }
-
-        numConti++;
-    }
-    public void visulizzaInformazioniConti(){
-        if(numConti != 0) {
-            for (int i = 0; i < contoBancario.length && i < numConti; i++) {
-                System.out.println(contoBancario[i].toString());
-            }
-        }else{
-            System.out.println("Nessun conto è stato aperto!");
-        }
-    }
-
-    public int saldoTotale(){
-        int sum = 0;
-        if(numConti != 0) {
-            for(int i = 0 ; i < contoBancario.length && i < numConti;i++){
-                sum += (int) contoBancario[i].getSaldo();
-            }
-        }else{
-            System.out.println("Nessun conto è stato aperto!");
-        }
-        return sum;
-    }
-
-    public ContoBancario[] getContoBancario() {
-        return contoBancario;
+    public ContoBancario[] getContoBancarioArray() {
+        return contoBancarioArray;
     }
 
     public int getNumConti() {
@@ -56,14 +22,52 @@ public class Banca {
         return nomeBanca;
     }
 
+    public void setContoBancarioArray(ContoBancario[] contoBancarioArray) {
+        this.contoBancarioArray = contoBancarioArray;
+    }
+
+    public void setNomeBanca(String nomeBanca) {
+        this.nomeBanca = nomeBanca;
+    }
+
+    public void setNumConti(int numConti) {
+        this.numConti = numConti;
+    }
+
+    public void aggiungiConto(ContoBancario contoBancario){
+        if(numConti < contoBancarioArray.length){
+            contoBancarioArray[numConti] = contoBancario;
+            numConti++;
+        }else{
+            System.out.println("ERRORE! La banca : " + getNomeBanca() + " può avere massimo "+ contoBancarioArray.length + " Conti");
+        }
+    }
+    public void visulizzaInformazioniConti(){
+        System.out.println("Nome banca: " + nomeBanca);
+        //if( contoBancarioArray.length != 0) {
+            for (int i = 0; i <  numConti ; i++) {
+                contoBancarioArray[i].stampaDettagli();
+            }
+
+    }
+
+    public double saldoTotale(){
+         double saldo = 0.0;
+            for(int i = 0; i < numConti; i++){
+                saldo = saldo + contoBancarioArray[i].getSaldo();
+            }
+        return saldo;
+    }
+
     @Override
     public String toString() {
         return "Banca{" +
                 "nomeBanca='" + nomeBanca + '\'' +
-                ", contoBancario=" + Arrays.toString(contoBancario) +
-                ", maxConti=" + maxConti +
+                ", contoBancario=" + Arrays.toString(contoBancarioArray) +
                 ", numConti=" + numConti +
                 '}';
     }
+
+
 }
 

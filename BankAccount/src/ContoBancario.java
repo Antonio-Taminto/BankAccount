@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class ContoBancario {
     private String iban;
     private double saldo;
@@ -29,5 +31,11 @@ public class ContoBancario {
                 "iban='" + iban + '\'' +
                 ", saldo=" + saldo +
                 '}';
+    }
+
+
+    public void stampaDettagli() {
+        System.out.println("iban:" + iban + "----" +" saldo:" + saldo);
+
     }
 }

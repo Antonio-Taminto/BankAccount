@@ -2,15 +2,18 @@
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-    Banca isp = new Banca("Intesa San Paolo",2);
-        isp.aggiungiConto("it 42174",30);
-        isp.aggiungiConto("it 9032189",40);
-        isp.aggiungiConto("it 9032189",40);
+        ContoBancario conto1 = new ContoBancario("it 42174",30);
+        ContoBancario conto2 = new ContoBancario("it 9032189",40);
 
-    Banca unicredit = new Banca("Unicredit",3);
-        unicredit.aggiungiConto("IT 373737",15);
+        Banca ing = new Banca("Ing",40);
 
-    Banca popolare = new Banca("Banca Popolare",5);
+        ing.aggiungiConto(conto1);
+        ing.aggiungiConto(conto2);
+
+        ing.visulizzaInformazioniConti();
+
+        System.out.println(ing.saldoTotale());
+
 
     }
 }
