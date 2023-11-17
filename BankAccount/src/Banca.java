@@ -17,21 +17,29 @@ public class Banca {
         if(numConti < maxConti){
         contoBancario[numConti] = new ContoBancario(iban, saldo);
         }else if (numConti == maxConti) {
-            System.out.println("Non è possibile aprire altri conti");
+            System.out.println("ERRORE! La banca : " + getNomeBanca() + " può avere massimo "+ maxConti + " Conti");
         }
 
         numConti++;
     }
     public void visulizzaInformazioniConti(){
-        for(int i = 0 ; i < contoBancario.length && i < numConti;i++){
-            System.out.println(contoBancario[i].toString());
+        if(numConti != 0) {
+            for (int i = 0; i < contoBancario.length && i < numConti; i++) {
+                System.out.println(contoBancario[i].toString());
+            }
+        }else{
+            System.out.println("Nessun conto è stato aperto!");
         }
     }
 
     public int saldoTotale(){
         int sum = 0;
-        for(int i = 0 ; i < contoBancario.length && i < numConti;i++){
-            sum += (int) contoBancario[i].getSaldo();
+        if(numConti != 0) {
+            for(int i = 0 ; i < contoBancario.length && i < numConti;i++){
+                sum += (int) contoBancario[i].getSaldo();
+            }
+        }else{
+            System.out.println("Nessun conto è stato aperto!");
         }
         return sum;
     }

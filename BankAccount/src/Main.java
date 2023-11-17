@@ -5,12 +5,12 @@ public class Main {
     Banca isp = new Banca("Intesa San Paolo",2);
         isp.aggiungiConto("it 42174",30);
         isp.aggiungiConto("it 9032189",40);
+        isp.aggiungiConto("it 9032189",40);
 
     Banca unicredit = new Banca("Unicredit",3);
         unicredit.aggiungiConto("IT 373737",15);
 
     Banca popolare = new Banca("Banca Popolare",5);
 
-    popolare.visulizzaInformazioniConti();
     }
 }
